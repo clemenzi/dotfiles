@@ -8,6 +8,7 @@ Personal configuration files for the tools I use every day. This repository is i
 
 - Git
 - Bash
+- [mise](https://mise.jdx.dev/)
 - A Unix-like environment with support for symbolic links
 - [Neovim](https://neovim.io/) 0.11 or later (0.12 recommended)
 
@@ -20,6 +21,16 @@ git clone https://github.com/clemenzi/dotfiles.git ~/.dotfiles
 
 The installer creates the required directories and symlinks the Neovim configuration to `~/.config/nvim`. It is safe to run again when the configuration changes.
 
+Install the development tools and Git hooks with mise:
+
+```bash
+cd ~/.dotfiles
+mise install
+mise run install-hooks
+```
+
+Run the formatter manually with `mise run fmt`.
+
 ## Repository layout
 
 ```text
@@ -27,6 +38,7 @@ The installer creates the required directories and symlinks the Neovim configura
 ├── config/
 │   └── nvim/       # Neovim configuration and plugins
 ├── install.sh      # Installation script
+├── mise.toml       # Development tools and tasks
 └── README.md
 ```
 

@@ -1,0 +1,13 @@
+min_version = "2026.8.14"
+
+[tools]
+stylua = "2.5.2"
+lefthook = "2.1.12"
+
+[tasks.fmt]
+description = "Format Lua files"
+run = "stylua --config-path stylua.toml --glob '**/*.lua' ."
+
+[tasks.install-hooks]
+description = "Install Git hooks"
+run = "lefthook install"
