@@ -3,3 +3,8 @@ pre-commit:
     stylua:
       run: ./node_modules/.bin/stylua --config-path stylua.toml --glob '**/*.lua' .
       stage_fixed: true
+
+commit-msg:
+  commands:
+    commitlint:
+      run: pnpm exec commitlint --edit {1}
