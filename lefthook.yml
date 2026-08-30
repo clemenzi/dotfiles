@@ -1,0 +1,5 @@
+pre-commit:
+  commands:
+    stylua:
+      run: ./node_modules/.bin/stylua --config-path stylua.toml --glob '**/*.lua' .
+      stage_fixed: true

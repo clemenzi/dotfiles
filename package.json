@@ -1,0 +1,18 @@
+{
+  "name": "dotfiles",
+  "scripts": {
+    "fmt": "stylua --config-path stylua.toml --glob '**/*.lua' .",
+    "prepare": "lefthook install"
+  },
+  "devEngines": {
+    "packageManager": {
+      "name": "pnpm",
+      "version": "^11.21.0",
+      "onFail": "download"
+    }
+  },
+  "devDependencies": {
+    "@johnnymorganz/stylua-bin": "^2.5.2",
+    "lefthook": "^2.1.12"
+  }
+}
