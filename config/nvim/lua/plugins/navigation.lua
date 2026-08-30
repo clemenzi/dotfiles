@@ -1,21 +1,28 @@
 return {
   {
     "stevearc/oil.nvim",
-    enabled = not vim.g.vscode,
     cmd = "Oil",
-    lazy = false,
+    init = function()
+      local arg = vim.fn.argv(0)
+
+      if arg ~= "" and vim.fn.isdirectory(arg) == 1 then
+        require("lazy").load({ plugins = { "oil.nvim" } })
+      end
+    end,
+
     opts = {
+      default_file_explorer = true,
       skip_confirm_for_simple_edits = true,
+
       view_options = {
         show_hidden = true,
       },
+
       keymaps = {
-        ["<Esc><Esc>"] = {
-          "actions.close",
-          mode = "n",
-        },
+        ["<Esc><Esc>"] = "actions.close",
         ["<leader>e"] = "actions.parent",
       },
+
       float = {
         max_width = 0.7,
         max_height = 0.6,
@@ -25,11 +32,13 @@ return {
           winhighlight = "Normal:TelescopeNormal,FloatBorder:TelescopeBorder,FloatTitle:TelescopeTitle",
         },
       },
+
       preview_win = {
         win_options = {
           winhighlight = "Normal:TelescopeNormal,FloatBorder:TelescopeBorder,FloatTitle:TelescopeTitle",
         },
       },
+
       confirmation = {
         border = "rounded",
         win_options = {
@@ -37,9 +46,11 @@ return {
         },
       },
     },
+
     dependencies = {
       "nvim-tree/nvim-web-devicons",
     },
+
     keys = {
       {
         "<leader>e",
