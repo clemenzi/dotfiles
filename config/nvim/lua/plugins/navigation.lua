@@ -25,7 +25,7 @@ return {
 
 			float = {
 				max_width = 0.7,
-				max_height = 0.6,
+				max_height = 0.8,
 				border = "rounded",
 				preview_split = "right",
 				win_options = {
@@ -73,7 +73,7 @@ return {
 				sorting_strategy = "ascending",
 				layout_config = {
 					width = 0.7,
-					height = 0.6,
+					height = 0.8,
 					prompt_position = "top",
 				},
 			},
