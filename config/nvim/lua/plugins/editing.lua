@@ -33,7 +33,8 @@ return {
 		"nvim-treesitter/nvim-treesitter",
 		enabled = not vim.g.vscode,
 		build = ":TSUpdate",
-		event = "BufRead",
+		-- Load before filetype detection so Tree-sitter can attach to the first buffer.
+		event = { "BufReadPre", "BufNewFile" },
 		opts = {},
 	},
 }
