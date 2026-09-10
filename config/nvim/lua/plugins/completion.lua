@@ -56,4 +56,9 @@ return {
 			},
 		},
 	},
+	{
+		"b0o/schemastore.nvim",
+		ft = { "json", "yaml" },
+		enabled = not vim.g.vscode,
+	},
 }

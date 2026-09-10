@@ -29,11 +29,12 @@ return {
 			{ "<leader>flw", "<cmd>Telescope lsp_workspace_symbols<cr>", desc = "Workspace symbols" },
 		},
 		opts = {
-			ensure_installed = { "lua_ls" },
+			ensure_installed = { "lua_ls", "jsonls", "yamlls" },
 			automatic_enable = true,
 		},
 		config = function(_, opts)
 			vim.lsp.config("*", { capabilities = require("blink.cmp").get_lsp_capabilities() })
+
 			vim.api.nvim_create_autocmd("LspAttach", {
 				group = vim.api.nvim_create_augroup("config-lsp", { clear = true }),
 				callback = function(args)
@@ -47,6 +48,33 @@ return {
 				end,
 			})
 			require("mason-lspconfig").setup(opts)
+		end,
+	},
+	{
+		"b0o/schemastore.nvim",
+		ft = { "json", "yaml" },
+		enabled = not vim.g.vscode,
+		dependencies = {
+			"neovim/nvim-lspconfig",
+		},
+		config = function()
+			vim.lsp.config.jsonls.setup({
+				settings = {
+					json = {
+						schemas = require("schemastore").json.schemas(),
+						validate = { enable = true },
+					},
+				},
+			})
+
+			vim.lsp.config.yamlls.setup({
+				settings = {
+					yaml = {
+						schemas = require("schemastore").yaml.schemas(),
+						validate = { enable = true },
+					},
+				},
+			})
 		end,
 	},
 }
