@@ -14,36 +14,52 @@ end
 -- ----------------------------------------------------------
 -- --- Statusline
 -- ----------------------------------------------------------
+local mode_labels = {
+	n = "NOR",
+	i = "INS",
+	v = "VIS",
+	V = "VIS",
+	["\22"] = "VIS",
+	s = "SEL",
+	S = "SEL",
+	["\19"] = "SEL",
+	R = "REP",
+	c = "CMD",
+	r = "PRM",
+	["!"] = "SHL",
+	t = "TER",
+}
+
 _G.statusline_mode = function()
 	local mode = vim.fn.mode(1)
-	local first = mode:sub(1, 1)
 
 	if mode:sub(1, 2) == "no" then
 		return "OPR"
-	elseif first == "n" then
-		return "NOR"
-	elseif first == "i" then
-		return "INS"
-	elseif first == "v" or first == "V" or first == "\22" then
-		return "VIS"
-	elseif first == "s" or first == "S" or first == "\19" then
-		return "SEL"
-	elseif first == "R" then
-		return "REP"
-	elseif first == "c" then
-		return "CMD"
-	elseif first == "r" then
-		return "PRM"
-	elseif first == "!" then
-		return "SHL"
-	elseif first == "t" then
-		return "TER"
 	end
 
-	return "UNK"
+	return mode_labels[mode:sub(1, 1)] or "UNK"
 end
 
-vim.opt.statusline = " %{v:lua.statusline_mode()} 󰇙 %f%m%r%= %y  %l:%c  %P "
+_G.statusline_recording = function()
+	local register = vim.fn.reg_recording()
+
+	if register == "" then
+		return ""
+	end
+
+	return "recording @" .. register
+end
+
+vim.opt.statusline = table.concat({
+	" %{v:lua.statusline_mode()}",
+	" 󰇙 %f%m%r",
+	"%=",
+	" %S",
+	" %{v:lua.statusline_recording()}",
+	" %y",
+	" %l:%c",
+	"  %P ",
+})
 
 -- ----------------------------------------------------------
 -- --- Options
