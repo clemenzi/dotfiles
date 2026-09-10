@@ -22,8 +22,13 @@ link() {
 
 # Config
 link "config/nvim" ".config/nvim"
+link "config/zsh" ".config/zsh"
 
 # Development tools and Git hooks
 (cd "$DOTFILES" && mise install && mise run install-hooks)
+
+echo "ADD THE FOLLOWING TO .zshrc"
+echo "source \"\$HOME/.config/zsh/.zshrc\""
+
 
 echo "Done."
