@@ -19,9 +19,13 @@ _update_git_prompt() {
 }
 precmd_functions+=(_update_git_prompt)
 setopt prompt_subst
-PROMPT='%B%F{green}➜%f%b %B%F{cyan}%1~%f%b${PROMPT_GIT} %B%F{yellow}✗%f%b '
+PROMPT='%B%F{green}󰘧%f%b %B%F{cyan}%1~%f%b${PROMPT_GIT} %B%F{yellow}✗%f%b '
 
 zinit light zdharma-continuum/fast-syntax-highlighting
 zinit light zsh-users/zsh-autosuggestions
 zinit ice depth=1
 zinit light jeffreytse/zsh-vi-mode
+
+alias ll='ls -alF'
+alias n='nvim'
+alias zsrc='source ~/.zshrc'
