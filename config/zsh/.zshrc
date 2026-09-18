@@ -26,6 +26,44 @@ zinit light zsh-users/zsh-autosuggestions
 zinit ice depth=1
 zinit light jeffreytse/zsh-vi-mode
 
-alias ll='ls -alF'
+# Prefer modern command-line tools when they are installed, while retaining the
+# standard commands on minimal systems.
+if [[ -o interactive ]]; then
+  if (( $+commands[bat] )); then
+    alias cat='bat'
+  elif (( $+commands[batcat] )); then
+    alias cat='batcat'
+  fi
+
+  if (( $+commands[eza] )); then
+    alias ls='eza'
+    alias ll='eza -alF'
+  else
+    alias ll='ls -alF'
+  fi
+
+  if (( $+commands[rg] )); then
+    alias grep='rg'
+  fi
+
+  if (( $+commands[fd] )); then
+    alias find='fd'
+  fi
+
+  if (( $+commands[delta] )); then
+    alias diff='delta'
+  fi
+fi
+
+# Install the optional modern CLI replacements used by the aliases above.
+install_optional_cli_tools() {
+  if ! (( $+commands[brew] )); then
+    print -u2 'Homebrew is required: https://brew.sh/'
+    return 1
+  fi
+
+  brew install bat eza ripgrep fd git-delta fzf
+}
+
 alias n='nvim'
 alias zsrc='source ~/.zshrc'
