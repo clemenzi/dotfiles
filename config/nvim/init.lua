@@ -72,6 +72,7 @@ vim.opt.laststatus = 3
 vim.opt.signcolumn = "yes"
 vim.opt.cmdheight = 0
 vim.opt.showcmdloc = "statusline"
+-- vim.opt.winborder = "rounded"
 
 -- Text editing
 vim.opt.tabstop = 2

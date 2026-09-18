@@ -26,24 +26,8 @@ return {
 			float = {
 				max_width = 0.7,
 				max_height = 0.8,
-				border = "rounded",
 				preview_split = "right",
-				win_options = {
-					winhighlight = "Normal:NormalFloat,FloatBorder:FloatBorder,FloatTitle:FloatTitle",
-				},
-			},
-
-			preview_win = {
-				win_options = {
-					winhighlight = "Normal:NormalFloat,FloatBorder:FloatBorder,FloatTitle:FloatTitle",
-				},
-			},
-
-			confirmation = {
 				border = "rounded",
-				win_options = {
-					winhighlight = "Normal:NormalFloat,FloatBorder:FloatBorder,FloatTitle:FloatTitle",
-				},
 			},
 		},
 
