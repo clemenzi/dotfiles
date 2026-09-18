@@ -6,9 +6,6 @@ return {
 		opts = { preset = "helix" },
 		config = function(_, opts)
 			require("which-key").setup(opts)
-			vim.api.nvim_set_hl(0, "WhichKeyNormal", { link = "TelescopeNormal" })
-			vim.api.nvim_set_hl(0, "WhichKeyBorder", { link = "TelescopeBorder" })
-			vim.api.nvim_set_hl(0, "WhichKeyTitle", { link = "TelescopeTitle" })
 		end,
 	},
 	{

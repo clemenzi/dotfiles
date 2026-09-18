@@ -29,20 +29,20 @@ return {
 				border = "rounded",
 				preview_split = "right",
 				win_options = {
-					winhighlight = "Normal:TelescopeNormal,FloatBorder:TelescopeBorder,FloatTitle:TelescopeTitle",
+					winhighlight = "Normal:NormalFloat,FloatBorder:FloatBorder,FloatTitle:FloatTitle",
 				},
 			},
 
 			preview_win = {
 				win_options = {
-					winhighlight = "Normal:TelescopeNormal,FloatBorder:TelescopeBorder,FloatTitle:TelescopeTitle",
+					winhighlight = "Normal:NormalFloat,FloatBorder:FloatBorder,FloatTitle:FloatTitle",
 				},
 			},
 
 			confirmation = {
 				border = "rounded",
 				win_options = {
-					winhighlight = "Normal:TelescopeNormal,FloatBorder:TelescopeBorder,FloatTitle:TelescopeTitle",
+					winhighlight = "Normal:NormalFloat,FloatBorder:FloatBorder,FloatTitle:FloatTitle",
 				},
 			},
 		},
@@ -60,39 +60,42 @@ return {
 		},
 	},
 	{
-		"nvim-telescope/telescope.nvim",
-		tag = "v0.1.9",
-		cmd = "Telescope",
+		"dmtrKovalenko/fff",
 		enabled = not vim.g.vscode,
+		build = function()
+			require("fff.download").download_or_build_binary()
+		end,
 		opts = {
-			defaults = {
-				prompt_prefix = "   ",
-				selection_caret = "  ",
-				entry_prefix = "  ",
-				initial_mode = "insert",
-				sorting_strategy = "ascending",
-				layout_config = {
-					width = 0.7,
-					height = 0.8,
-					prompt_position = "top",
-				},
+			layout = {
+				width = 0.7,
+				height = 0.8,
+				prompt_position = "top",
 			},
 		},
-		dependencies = {
-			"nvim-lua/plenary.nvim",
-		},
+		lazy = false,
 		keys = {
-			{ "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "Find Files" },
-			{ "<leader>fg", "<cmd>Telescope live_grep<cr>", desc = "Live Grep" },
-			{ "<leader>fb", "<cmd>Telescope buffers<cr>", desc = "Buffers" },
-			{ "<leader>fh", "<cmd>Telescope help_tags<cr>", desc = "Help Tags" },
-			{ "<leader>fo", "<cmd>Telescope oldfiles<cr>", desc = "Old Files" },
-			{ "<leader>fc", "<cmd>Telescope commands<cr>", desc = "Commands" },
-			{ "<leader>fd", "<cmd>Telescope diagnostics<cr>", desc = "Diagnostics" },
-			{ "<leader>fk", "<cmd>Telescope keymaps<cr>", desc = "Keymaps" },
-			{ "<leader>fr", "<cmd>Telescope resume<cr>", desc = "Resume" },
-			{ "<leader>fs", "<cmd>Telescope grep_string<cr>", desc = "Grep String" },
-			{ "<leader>fw", "<cmd>Telescope current_buffer_fuzzy_find<cr>", desc = "Search Buffer" },
+			{
+				"<leader>ff",
+				function()
+					require("fff").find_files()
+				end,
+				desc = "Find Files",
+			},
+			{
+				"<leader>fg",
+				function()
+					require("fff").live_grep()
+				end,
+				desc = "Live Grep",
+			},
+			{
+				"<leader>fs",
+				function()
+					require("fff").live_grep_under_cursor()
+				end,
+				mode = { "n", "x" },
+				desc = "Search Word / Selection",
+			},
 		},
 	},
 	{

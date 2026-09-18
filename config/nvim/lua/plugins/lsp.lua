@@ -21,12 +21,6 @@ return {
 				end,
 				desc = "Format file",
 			},
-			{ "<leader>fld", "<cmd>Telescope lsp_definitions<cr>", desc = "Definitions" },
-			{ "<leader>flr", "<cmd>Telescope lsp_references<cr>", desc = "References" },
-			{ "<leader>fli", "<cmd>Telescope lsp_implementations<cr>", desc = "Implementations" },
-			{ "<leader>flt", "<cmd>Telescope lsp_type_definitions<cr>", desc = "Type definitions" },
-			{ "<leader>fls", "<cmd>Telescope lsp_document_symbols<cr>", desc = "Document symbols" },
-			{ "<leader>flw", "<cmd>Telescope lsp_workspace_symbols<cr>", desc = "Workspace symbols" },
 		},
 		opts = {
 			ensure_installed = { "lua_ls", "jsonls", "yamlls" },
