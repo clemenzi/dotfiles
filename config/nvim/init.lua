@@ -56,7 +56,6 @@ vim.opt.statusline = table.concat({
 	"%=",
 	" %S",
 	" %{v:lua.statusline_recording()}",
-	" %y",
 	" %l:%c",
 	"  %P ",
 })
