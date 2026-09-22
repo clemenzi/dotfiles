@@ -48,9 +48,6 @@ return {
 		"b0o/schemastore.nvim",
 		ft = { "json", "yaml" },
 		enabled = not vim.g.vscode,
-		dependencies = {
-			"neovim/nvim-lspconfig",
-		},
 		config = function()
 			vim.lsp.config("jsonls", {
 				settings = {
